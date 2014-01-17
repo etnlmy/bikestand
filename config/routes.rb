@@ -1,4 +1,10 @@
 Bikestand::Application.routes.draw do
+  get "contracts/new"
+  
+  root to: 'contracts#new'
+  
+  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
