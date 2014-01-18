@@ -26,5 +26,5 @@ config/secrets.yml
 .rvmrc
 
 # Ignore Espresso project file
-*.esproj
+/bikestand.esproj
 
