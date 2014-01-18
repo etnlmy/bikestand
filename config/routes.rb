@@ -1,7 +1,9 @@
 Bikestand::Application.routes.draw do
-  get "contracts/new"
+
+  namespace :api do
+    resources :contracts, only: [:index, :show], defaults: { :format => 'json' }
+  end
   
-  root to: 'contracts#new'
   
   
 
