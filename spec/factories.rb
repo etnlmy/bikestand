@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :contract do
-    name             "Paris"
-    commercial_name  "Velib"
-    country_code     "FR"
-    cities           "foobar"
+    sequence(:name) { |n| "Contract #{n}" }
+    sequence(:commercial_name) { |n| "Commercial Name #{n}" }
+    country_code "FR"
+    cities ["Arcueil", "Aubervilliers", "Bagnolet"]
   end
 end
