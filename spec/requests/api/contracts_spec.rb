@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe "Contracts API" do
 
   before(:all) do
