@@ -4,7 +4,7 @@ class Contract < ActiveRecord::Base
   
   attr_accessible :name, :commercial_name, :country_code, :cities
   
-  has_many :stations
+  has_many :stations, dependent: :destroy
   
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :commercial_name, presence: true, uniqueness: { case_sensitive: false }

@@ -93,6 +93,16 @@ describe Contract do
     it "should have the right station" do
       @contract.stations.should == [station_one, station_two]
     end
+    
+    it "should destroy the associated stations" do
+      stations = @contract.stations.dup
+      @contract.destroy
+      stations.should_not be_empty
+      stations.each do |station|
+        Station.find_by_id(station.id).should be_nil
+      end
+    end
+    
   end
   
 end
