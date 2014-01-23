@@ -4,6 +4,8 @@ class Contract < ActiveRecord::Base
   
   attr_accessible :name, :commercial_name, :country_code, :cities
   
+  has_many :stations
+  
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :commercial_name, presence: true, uniqueness: { case_sensitive: false }
   validates :country_code, presence: true, format: {with: VALID_COUNTRY_CODE_REGEX}

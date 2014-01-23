@@ -81,5 +81,18 @@ describe Contract do
     it { should_not be_valid }
   end   
   
+  describe "station association" do
+    before {@contract.save}
+    let!(:station_one) do
+      FactoryGirl.create(:station, contract: @contract)
+    end
+    let!(:station_two) do
+      FactoryGirl.create(:station, contract: @contract)
+    end
+    
+    it "should have the right station" do
+      @contract.stations.should == [station_one, station_two]
+    end
+  end
   
 end
