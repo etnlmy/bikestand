@@ -1,14 +1,10 @@
 require 'spec_helper'
 
 describe Contract do
-  before { @contract = Contract.new(
-      name: "Paris",
-      commercial_name: "Velib",
-      country_code: "FR",
-      cities: ["Arcueil", "Aubervilliers", "Bagnolet"]) }
+  before { @contract = FactoryGirl.build(:contract) }
       
   subject {@contract}
-  
+                                                                               
   it { should respond_to(:name) }
   it { should respond_to(:commercial_name) }  
   it { should respond_to(:country_code) }
