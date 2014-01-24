@@ -5,7 +5,9 @@ Bikestand::Application.routes.draw do
       member do
         get :stations
       end
-    end   
+    end
+    
+    resources :stations, only: [:index, :show], defaults: { format: 'json' }
   end
   
   
