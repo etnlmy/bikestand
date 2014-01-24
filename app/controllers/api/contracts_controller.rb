@@ -9,4 +9,9 @@ class Api::ContractsController < ApplicationController
   def show
     respond_with(@contract = Contract.find(params[:id]))
   end
+  
+  def stations
+    @contract = Contract.find(params[:id])
+    respond_with(@contract.stations)
+  end
 end

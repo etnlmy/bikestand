@@ -1,7 +1,11 @@
 Bikestand::Application.routes.draw do
 
   namespace :api do
-    resources :contracts, only: [:index, :show], defaults: { :format => 'json' }
+    resources :contracts, only: [:index, :show], defaults: { format: 'json' } do
+      member do
+        get :stations
+      end
+    end   
   end
   
   
