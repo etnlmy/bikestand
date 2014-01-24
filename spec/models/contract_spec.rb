@@ -69,16 +69,6 @@ describe Contract do
     end
 
     it { should_not be_valid }
-  end 
-  
-  describe "when commercial_name is already taken" do
-    before do
-      contract_with_same_commercial_name = @contract.dup
-      contract_with_same_commercial_name.commercial_name = @contract.commercial_name.upcase
-      contract_with_same_commercial_name.save
-    end
-
-    it { should_not be_valid }
   end   
   
   describe "station association" do

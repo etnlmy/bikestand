@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(:version => 20140123164142) do
     t.datetime "updated_at",      :null => false
   end
 
-  add_index "contracts", ["commercial_name"], :name => "index_contracts_on_commercial_name", :unique => true
   add_index "contracts", ["name"], :name => "index_contracts_on_name", :unique => true
 
   create_table "stations", :force => true do |t|
@@ -40,6 +39,6 @@ ActiveRecord::Schema.define(:version => 20140123164142) do
   end
 
   add_index "stations", ["contract_id"], :name => "index_stations_on_contract_id"
-  add_index "stations", ["number", "name"], :name => "index_stations_on_number_and_name", :unique => true
+  add_index "stations", ["name"], :name => "index_stations_on_name", :unique => true
 
 end

@@ -1,7 +1,35 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# Fill the Contract and Station tables with the data from the JCDecaux
+# platform
+
+#puts ENV["apikey"]
 #
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#unless ENV["apikey"]
+#  puts "Please provide your JCDecaux api-key as environment variable."
+#  puts "rake db:seed apikey='xxxxxxxxxx'"
+#  exit
+#end
+
+client = JCDecauxClient.new(API_KEYS["jcdecaux"]["key"])
+
+client.contracts.each do |contract|
+
+  new_contract = Contract.where(name: contract["name"].downcase).first_or_create!(
+        name:            contract["name"],
+        commercial_name: contract["commercial_name"],
+        country_code:    contract["country_code"],
+        cities:          contract["cities"] )
+        
+  stations = client.stations(contract_name: contract["name"])
+  stations.each do |station|
+    new_contract.stations.where(name: station["name"]).first_or_create(
+        number:    station["number"],
+        name:      station["name"],
+        address:   station["address"],
+        latitude:  station["position"]["lat"],
+        longitude: station["position"]["lng"],
+        elevation: 0,
+        banking:   station["banking"],
+        bonus:     station["bonus"])
+  end
+  
+end

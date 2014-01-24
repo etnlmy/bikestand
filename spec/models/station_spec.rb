@@ -65,16 +65,6 @@ describe Station do
     it { should_not be_valid }
   end
   
-  describe "when banking is not present" do
-    before { @station.banking = nil }
-    it { should_not be_valid }
-  end
-  
-  describe "when bonus is not present" do
-    before { @station.bonus = nil }
-    it { should_not be_valid }
-  end
-  
   describe "when elevation is not present" do
     before { @station.elevation = nil }
     it { should_not be_valid }
@@ -85,16 +75,6 @@ describe Station do
       station_with_same_name = @station.dup
       station_with_same_name.name = @station.name.upcase
       station_with_same_name.save
-    end
-  
-    it { should_not be_valid }
-  end
-  
-  describe "when number is already taken" do
-    before do
-      station_with_same_number = @station.dup
-      station_with_same_number.number = @station.number
-      station_with_same_number.save
     end
   
     it { should_not be_valid }

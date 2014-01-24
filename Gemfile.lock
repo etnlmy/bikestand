@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/eTnDev/jcdecaux-client.git
+  revision: 9d92cbec0c0dd92ee5af08ba9f5ed6621ec71f6c
+  specs:
+    jcdecaux-client (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -123,6 +129,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   factory_girl_rails (= 4.1.0)
+  jcdecaux-client!
   jquery-rails
   rails (= 3.2.13)
   rspec-rails (= 2.11.0)

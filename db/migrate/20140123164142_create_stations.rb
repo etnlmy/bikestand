@@ -13,7 +13,7 @@ class CreateStations < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :stations, [:number, :name], unique: true
+    add_index :stations, :name, unique: true
     add_index :stations, :contract_id
   end
 end
