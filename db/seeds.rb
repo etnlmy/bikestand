@@ -1,14 +1,6 @@
 # Fill the Contract and Station tables with the data from the JCDecaux
 # platform
 
-#puts ENV["apikey"]
-#
-#unless ENV["apikey"]
-#  puts "Please provide your JCDecaux api-key as environment variable."
-#  puts "rake db:seed apikey='xxxxxxxxxx'"
-#  exit
-#end
-
 client = JCDecauxClient.new(API_KEYS["jcdecaux"]["key"])
 
 client.contracts.each do |contract|
