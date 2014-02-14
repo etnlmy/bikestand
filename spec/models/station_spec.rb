@@ -65,11 +65,6 @@ describe Station do
     it { should_not be_valid }
   end
   
-  describe "when elevation is not present" do
-    before { @station.elevation = nil }
-    it { should_not be_valid }
-  end
-  
   describe "when name is already taken" do
     before do
       station_with_same_name = @station.dup
