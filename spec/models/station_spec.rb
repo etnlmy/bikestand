@@ -3,15 +3,7 @@ require 'spec_helper'
 describe Station do
 
   let(:contract) {FactoryGirl.create(:contract)}
-  before { @station = contract.stations.build(
-    number:   "31705",
-    name:     "31705 - CHAMPEAUX (BAGNOLET)",
-    address:  "RUE DES CHAMPEAUX (PRES DE LA GARE ROUTIERE) - 93170 BAGNOLET",
-    latitude:  48.8645278209514,
-    longitude: 2.416170724425901,
-    banking:   true,
-    bonus:     true,
-    elevation: 0) }
+  before { @station = FactoryGirl.build(:station, contract: contract)}
     
   subject { @station }
   
