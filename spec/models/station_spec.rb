@@ -67,4 +67,27 @@ describe Station do
     it { should_not be_valid }
   end
   
+  describe "record association" do
+    before { @station.save }
+    let!(:record_one) do
+      FactoryGirl.create(:record, station: @station)
+    end
+    let!(:record_two) do
+      FactoryGirl.create(:record, station: @station)
+    end
+    
+    it "should have the right records" do
+      @station.records.should == [record_one, record_two]
+    end
+    
+    it "should destroy all the associated records" do
+      records = @station.records.dup
+      @station.destroy
+      records.should_not be_empty
+      records.each do |record|
+        Record.find_by_id(record.id).should be_nil
+      end
+    end
+  end
+  
 end

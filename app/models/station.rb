@@ -7,6 +7,7 @@ class Station < ActiveRecord::Base
   attr_accessible :latitude, :longitude, :name, :number
   
   belongs_to :contract
+  has_many :records, dependent: :destroy
   
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :number, :address, presence: true

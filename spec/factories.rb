@@ -19,4 +19,13 @@ FactoryGirl.define do
     contract
   end
   
+  factory :record do
+    status                 "OPEN"
+    bike_stands            12
+    available_bike_stands  8
+    available_bikes        4
+    sequence(:last_update) { |n| 1393790284 + n }         
+    station
+  end
+  
 end
