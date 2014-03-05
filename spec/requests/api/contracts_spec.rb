@@ -33,7 +33,7 @@ describe "Contracts API" do
   
   describe "stations" do    
     it "should return the right station as JSON response" do
-      get stations_api_contract_path(@contract)
+      get api_contract_stations_path(@contract)
       expect(response).to be_success
       json = JSON.parse(response.body)
       expect(json.length).to eq(2)

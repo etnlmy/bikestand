@@ -14,7 +14,7 @@ describe "Stations API" do
   
   describe "index" do
     it "should return all the stations as JSON response" do
-      get api_stations_path
+      get api_contract_stations_path(@contract)
       expect(response).to be_success
       json = JSON.parse(response.body)
       expect(json.length).to eq(10) 
@@ -23,7 +23,7 @@ describe "Stations API" do
   
   describe "show" do
     it "should return the right stations as JSON response" do
-      get api_station_path(@station)
+      get api_contract_station_path(@contract, @station)
       expect(response).to be_success
       json = JSON.parse(response.body)
       expect(json['name']).to eq(@station[:name])
