@@ -8,8 +8,7 @@ describe "Stations API" do
     9.times { FactoryGirl.create(:station, contract: @contract) }
   end
   after(:all) do 
-    Contract.delete_all
-    Station.delete_all
+    Contract.destroy_all
   end
   
   describe "index" do
