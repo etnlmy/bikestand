@@ -18,6 +18,9 @@ describe 'Records API' do
       expect(response).to be_success
       json = JSON.parse(response.body)
       expect(json.length).to eq(10)
+      @records.each_index do |i| 
+        expect(@records[i].last_update).to eq(json[i]["last_update"])
+      end
     end
   end
   
