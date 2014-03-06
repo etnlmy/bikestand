@@ -13,5 +13,23 @@ class Station < ActiveRecord::Base
   validates :number, :address, presence: true
   validates :latitude, :longitude, presence: true
   validates :contract_id, presence: true
+  
+  # Create a new Record from the JCDecaux real time data
+  #
+  # data - a hash containing fresh data of a station obtained from
+  # the JCDecauxClient
+  def create_new_record(data)
+    self.records.create(
+      status: data["status"],
+      bike_stands: data["bike_stands"],
+      available_bike_stands: data["available_bike_stands"],
+      available_bikes: data["available_bikes"],
+      last_update: data["last_update"]
+    )
+  end
+  
+  def fill_elevation_data
+    update_attribute(:elevation, elevation_for(self.latitude, self.longitude))
+  end
     
 end
