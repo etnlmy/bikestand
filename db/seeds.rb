@@ -5,7 +5,7 @@ client = JCDecauxClient.new(API_KEYS["jcdecaux"]["key"])
 
 client.contracts.each do |contract|
 
-  puts "processing contract #{contract['name']}"
+  puts "Loading data for contract '#{contract['name']}'"
   new_contract = Contract.where(name: contract["name"].downcase).first_or_create!(
         name:            contract["name"],
         commercial_name: contract["commercial_name"],
