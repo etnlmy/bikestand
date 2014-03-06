@@ -21,4 +21,16 @@ class Contract < ActiveRecord::Base
     end 
   end
   
+  # Create a new Record on each of the stations
+  #
+  # jc_decaux_client - an instance of JCDecauxClient
+  def update_stations(jc_decaux_client)
+    data = jc_decaux_client.stations(contract_name: self.name) || []
+    data.each do |station_data|
+      self.stations.where(number: station_data["number"]).each do |station|
+        station.create_new_record(station_data)
+      end      
+    end
+  end
+  
 end
