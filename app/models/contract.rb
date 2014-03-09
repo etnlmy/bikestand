@@ -27,9 +27,8 @@ class Contract < ActiveRecord::Base
   def update_stations(jc_decaux_client)
     data = jc_decaux_client.stations(contract_name: self.name) || []
     data.each do |station_data|
-      self.stations.where(number: station_data["number"]).each do |station|
-        station.create_new_record(station_data)
-      end      
+      station = self.stations.find_by_number(station_data["number"])
+      station.create_new_record(station_data) if station    
     end
   end
   
