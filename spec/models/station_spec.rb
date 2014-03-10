@@ -67,6 +67,17 @@ describe Station do
     it { should_not be_valid }
   end
   
+  describe "fill elevation data" do
+    before do
+      @station.should_receive(:elevation_for).with(@station.latitude, @station.longitude)
+        .and_return(123.4)
+      @station.fill_elevation_data
+      @station.reload
+    end   
+    
+    its(:elevation) { should == 123.4  }
+  end
+  
   describe "record association" do
     before { @station.save }
     let!(:record_one) do
@@ -88,6 +99,27 @@ describe Station do
         Record.find_by_id(record.id).should be_nil
       end
     end
+    
+    describe "should create a new record when create_new_record is called" do  
+      let (:data) { FactoryGirl.attributes_for(:record, station: @station).stringify_keys! }
+      before do
+        @station.records.destroy_all
+        @station.records.count.should == 0
+        @station.create_new_record(data)
+        @station.reload  
+      end
+      
+      it "should have one record with the right attributes" do
+        @station.records.count.should == 1
+        record = @station.records.first
+        record.status.should == data["status"]
+        record.bike_stands.should == data["bike_stands"]
+        record.available_bike_stands.should == data["available_bike_stands"]
+        record.available_bikes.should == data["available_bikes"]
+        record.last_update.should == data["last_update"]
+      end
+    end
+    
   end
   
 end
