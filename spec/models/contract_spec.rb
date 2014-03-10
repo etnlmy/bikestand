@@ -89,6 +89,30 @@ describe Contract do
       end
     end
     
+    describe "when update_stations is called" do
+      let(:station_data_one) do
+        FactoryGirl.attributes_for(:record, station: station_one).stringify_keys!
+          .merge({"number" => station_one.number})
+      end
+      let(:station_data_two) do
+        FactoryGirl.attributes_for(:record, station: station_two).stringify_keys!
+          .merge({"number" => station_two.number})
+      end
+      
+      before do
+        station_one.records.destroy_all
+        jc_decaux_client = double("jc_decaux client")
+        jc_decaux_client.should_receive(:stations).with(contract_name: @contract.name)
+          .and_return([station_data_one, station_data_two])
+        @contract.update_stations(jc_decaux_client)  
+      end
+      
+      it "each stations should have a new record" do
+        @contract.stations.first.records.count.should == 1
+        @contract.stations.last.records.count.should == 1
+      end    
+    end
+    
   end
   
 end
