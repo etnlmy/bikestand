@@ -100,7 +100,7 @@ describe Station do
       end
     end
     
-    describe "should create a new record when create_new_record is called" do  
+    describe "call create_new_record" do  
       let (:data) { FactoryGirl.attributes_for(:record, station: @station).stringify_keys! }
       before do
         @station.records.destroy_all
