@@ -5,4 +5,7 @@ class Record < ActiveRecord::Base
   validates :status, inclusion: { in: %w(OPEN CLOSE) }
   
   belongs_to :station
+  
+  scope :last_24_hours, lambda { where("last_update > ?", 1.day.ago.to_i ) }
+
 end
