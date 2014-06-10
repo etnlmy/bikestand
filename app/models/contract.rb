@@ -8,7 +8,7 @@ class Contract < ActiveRecord::Base
   
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :commercial_name, presence: true
-  validates :country_code, presence: true, format: {with: VALID_COUNTRY_CODE_REGEX}
+  validates :country_code, presence: true, format: { with: VALID_COUNTRY_CODE_REGEX }
   validates :cities, presence: true
   validate  :cities_cannot_be_empty
   serialize :cities
