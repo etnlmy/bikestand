@@ -7,7 +7,7 @@ gem 'rails', '3.2.13'
 gem 'jcdecaux-client', :git => 'git://github.com/etnlmy/jcdecaux-client.git'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.5'
+  gem 'sqlite3'
   gem 'rspec-rails', '2.11.0'
 end
 
@@ -24,7 +24,7 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', '~> 0.10.2'
-  
+
   gem 'uglifier', '>= 1.0.3'
 end
 
