@@ -7,7 +7,7 @@ gem 'rails', '3.2.13'
 gem 'jcdecaux-client', :git => 'git://github.com/etnlmy/jcdecaux-client.git'
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.9'
   gem 'rspec-rails', '2.11.0'
 end
 
