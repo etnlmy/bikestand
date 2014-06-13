@@ -20,9 +20,9 @@ test:
 
 production:
   adapter: mysql2
+  host: localhost
   encoding: utf8
-  database: blog_development
+  database: bikestand
   pool: 5
   username: bikestand
   password:
-  socket: /tmp/mysql.sock
