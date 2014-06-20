@@ -1,4 +1,8 @@
+set :job_template, nil
+
 set :output, "#{Whenever.path}/log/cron.log"
+env :PATH, ENV['PATH']
+env :GEM_HOME, ENV['GEM_HOME']
 
 every 10.minutes do
   rake "db:new_record"
