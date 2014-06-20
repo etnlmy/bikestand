@@ -5,7 +5,7 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'jcdecaux-client', :git => 'git://github.com/etnlmy/jcdecaux-client.git'
-gem  'mysql2'
+gem 'whenever', :require => false
 
 group :development, :test do
   gem 'sqlite3', '~> 1.3.9'
@@ -14,6 +14,10 @@ end
 
 group :test do
   gem 'factory_girl_rails', '4.1.0'
+end
+
+group :production do
+  gem 'mysql2'
 end
 
 

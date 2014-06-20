@@ -3,7 +3,7 @@ namespace :db do
   desc "Look for stations where elevation is nil and fill it in"
   task :elevation => :environment do
     puts "filling in elevation data ..."
-    Station.where(elevation: nil).limit(10).each do |station|
+    Station.where(elevation: nil).limit(2500).each do |station|
       station.fill_elevation_data
     end
     puts "Done."
