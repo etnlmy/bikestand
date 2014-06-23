@@ -3,11 +3,13 @@ class Api::StationsController < ApplicationController
   respond_to :json
   
   def index
-    respond_with(Station.all)
+    @contract = Contract.find(params[:contract_id])
+    respond_with(@contract.stations)
   end
   
   def show
-    respond_with(Station.find(params[:id]))
+    @contract = Contract.find(params[:contract_id])
+    respond_with(@contract.stations.find(params[:id]))
   end
   
 end
