@@ -24,7 +24,7 @@ FactoryGirl.define do
     bike_stands            12
     available_bike_stands  8
     available_bikes        4
-    sequence(:last_update) { |n| 1393790284 + n }         
+    sequence(:last_update) { |n| Time.at(1393790284 + n) }         
     station
   end
   

@@ -24,7 +24,7 @@ class Station < ActiveRecord::Base
       bike_stands: data["bike_stands"],
       available_bike_stands: data["available_bike_stands"],
       available_bikes: data["available_bikes"],
-      last_update: data["last_update"]
+      last_update: Time.at(data["last_update"])
     )
   end
   
