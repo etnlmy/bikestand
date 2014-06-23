@@ -26,6 +26,11 @@ describe Record do
       end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end
   end 
+
+  describe "when last_update is nil" do
+    before { @record.last_update = nil }
+    it { should_not be_valid }
+  end
   
   describe "when status is not OPEN or CLOSE" do
     before { @record.status = "OTHER" }

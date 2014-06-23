@@ -92,11 +92,11 @@ describe Contract do
     describe "when update_stations is called" do
       let(:station_data_one) do
         FactoryGirl.attributes_for(:record, station: station_one).stringify_keys!
-          .merge({"number" => station_one.number})
+          .merge({"number" => station_one.number, "last_update" => 1403551306000})
       end
       let(:station_data_two) do
         FactoryGirl.attributes_for(:record, station: station_two).stringify_keys!
-          .merge({"number" => station_two.number})
+          .merge({"number" => station_two.number, "last_update" => 1403551306000})
       end
       
       before do

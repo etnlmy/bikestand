@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140302193416) do
+ActiveRecord::Schema.define(:version => 20140623200958) do
 
   create_table "contracts", :force => true do |t|
     t.string   "name"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20140302193416) do
     t.integer  "bike_stands"
     t.integer  "available_bike_stands"
     t.integer  "available_bikes"
-    t.datetime "last_update"
+    t.datetime "last_update",           :null => false
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end

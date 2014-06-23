@@ -101,7 +101,8 @@ describe Station do
     end
     
     describe "call create_new_record" do  
-      let (:data) { FactoryGirl.attributes_for(:record, station: @station).stringify_keys! }
+      let (:data) { FactoryGirl.attributes_for(:record, station: @station).stringify_keys!
+        .merge({"last_update" => 1403551306000}) }
       before do
         @station.records.destroy_all
         @station.records.count.should == 0
@@ -116,7 +117,7 @@ describe Station do
         record.bike_stands.should == data["bike_stands"]
         record.available_bike_stands.should == data["available_bike_stands"]
         record.available_bikes.should == data["available_bikes"]
-        record.last_update.should == data["last_update"]
+        record.last_update.should == Time.at(1403551306000/1000)
       end
     end
     
