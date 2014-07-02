@@ -9,5 +9,7 @@ Bikestand::Application.routes.draw do
     match "contracts/:id/stations/:id/records" => "records#search", :as => :records, format: 'json'
       
   end
+
+  root :to => "contracts#index"
     
 end
