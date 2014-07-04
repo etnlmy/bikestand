@@ -1,3 +1,38 @@
-// Place all the styles related to the Contracts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.subunit.PRX { fill: #a6cee3; }
+.subunit.ESX { fill: #1f78b4; }
+.subunit.ESI { fill: #1f78b4; }
+.subunit.FXX { fill: #b2df8a; }
+.subunit.FXC { fill: #b2df8a; }
+.subunit.LUX { fill: #33a02c; }
+.subunit.BWR { fill: #fb9a99; }
+.subunit.BCR { fill: #fb9a99; }
+.subunit.BFR { fill: #fb9a99; }
+.subunit.SWE { fill: #e31a1c; }
+.subunit.NOW { fill: #fdbf6f; }
+.subunit.NJM { fill: #fdbf6f; }
+.subunit.FIN { fill: #ff7f00; }
+.subunit.EST { fill: #cab2d6; }
+.subunit.LTU { fill: #6a3d9a; }
+.subunit.LVA { fill: #ffff99; }
+.subunit.POL { fill: #b15928; }
+.subunit.DEU { fill: #cdc; }
+.subunit.NLX { fill: #dcd; }
+
+.city:hover .citylabel{
+  display: inline;
+}
+
+.citycircle {
+  fill: steelblue;
+  fill-opacity: .6;
+  stroke: #fff;
+}
+.citylabel {
+  display: none;
+  font: 12px sans-serif;
+}
+
+a.city:hover {
+  text-decoration:none;
+}
+

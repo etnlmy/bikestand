@@ -1,4 +1,5 @@
 $(function() {
+
   var width = 700,
     height = 800;
 
@@ -16,6 +17,10 @@ $(function() {
 
   var y = function(long, lat) {
     return projection([long, lat])[1];
+  }
+
+  function capitaliseFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   d3.json("western_europe.json", function(error, we) {
@@ -36,33 +41,29 @@ $(function() {
       .attr("class", function(d) { return "subunit " + d.id; })
       .attr("d", path);
 
-  });
+    d3.json("api/contracts.json", function(cities){
 
-  d3.json("cities.json", function(cities){
+      var citiesLinks = svg.selectAll("a")
+          .data(cities)
+        .enter().append("a")
+          .attr("xlink:href", function(d) { return "contracts/" + d.id })
+          .attr("class", "city");
 
-    var circles = svg.selectAll("a")
-        .data(cities)
-      .enter().append("a")
-        .attr("xlink:href", "http://example.com")
-      .append("circle")
-        .attr("cx", function(d) { return x(d.long, d.lat) })
-        .attr("cy", function(d) { return y(d.long, d.lat) })
-        .attr("r", 6)
-        .attr("class", "city"); 
+      citiesLinks.append("circle")
+          .attr("cx", function(d) { return x(d.longitude, d.latitude) })
+          .attr("cy", function(d) { return y(d.longitude, d.latitude) })
+          .attr("r", 5)
+          .attr("class", "citycircle");
 
-    circles.append("a")
-        .attr("href", "http://example.com");
+      citiesLinks.append("text")
+          .attr("dx", "0.7em")
+          .attr("dy", "0.7em")
+          .attr("class", "citylabel")
+          .attr("transform", function(d) { return "translate(" + x(d.longitude, d.latitude) + ", " + y(d.longitude, d.latitude)  + ")"; })
+          .text(function(d) { return capitaliseFirstLetter(d.name); });
 
-    var tooltip = svg.selectAll("g")
-      .data(cities)
-    .enter().append("g")
-      .attr("transform", function(d) { return "translate(" + x(d.long, d.lat) + ", " + y(d.long, d.lat)  + ")"; });
+    });  
 
-    var text = tooltip.append("text")
-      .attr("dx", "1em")
-      .attr("dy", "1em")
-      .attr("class", "label")
-      .text(function(d) { return d.name; });
   });
 
 });
