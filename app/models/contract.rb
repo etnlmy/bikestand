@@ -33,11 +33,11 @@ class Contract < ActiveRecord::Base
   end
 
   def latitude
-    stations.first.latitude if stations.first
+    stations.first.try(:latitude)
   end
 
   def longitude
-    stations.first.longitude if stations.first
+    stations.first.try(:longitude)
   end
 
   def as_json(options)
