@@ -42,11 +42,6 @@ describe Station do
     it { should_not be_valid }
   end
   
-  describe "when address is not present" do
-    before { @station.address = nil }
-    it { should_not be_valid }
-  end
-  
   describe "when latitude is not present" do
     before { @station.latitude = nil }
     it { should_not be_valid }

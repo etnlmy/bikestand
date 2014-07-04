@@ -10,7 +10,7 @@ class Station < ActiveRecord::Base
   has_many :records, dependent: :destroy
   
   validates :name, presence: true, uniqueness: { case_sensitive: false }
-  validates :number, :address, presence: true
+  validates :number, presence: true
   validates :latitude, :longitude, presence: true
   validates :contract_id, presence: true
   

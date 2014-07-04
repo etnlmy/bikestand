@@ -31,5 +31,17 @@ class Contract < ActiveRecord::Base
       station.create_new_record(station_data) if station    
     end
   end
+
+  def latitude
+    stations.first.latitude if stations.first
+  end
+
+  def longitude
+    stations.first.longitude if stations.first
+  end
+
+  def as_json(options)
+    super(methods: [:latitude, :longitude])
+  end
   
 end
