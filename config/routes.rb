@@ -11,5 +11,7 @@ Bikestand::Application.routes.draw do
   end
 
   root :to => "contracts#index"
+
+  resources :contracts, only: [:show, :index]
     
 end

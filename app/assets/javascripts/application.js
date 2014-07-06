@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require d3
-//= require_tree .
 //= require topojson
+//= require bootstrap
+//= require jquery-readyselector
+//= require_tree .
+
 

@@ -1,13 +1,13 @@
-$(function() {
+$(".container.contracts.index").ready(function() {
 
   var width = 700,
-    height = 800;
+    height = 700;
 
   var projection = d3.geo.mercator()
       .scale(600)
-      .translate([width / 3, 1150]);
+      .translate([width / 3, 1100]);
 
-  var svg = d3.select(".well").append("svg")
+  var svg = d3.select(".panel-body").append("svg")
       .attr("width", width)
       .attr("height", height);
 
@@ -59,7 +59,8 @@ $(function() {
           .attr("dx", "0.7em")
           .attr("dy", "0.7em")
           .attr("class", "citylabel")
-          .attr("transform", function(d) { return "translate(" + x(d.longitude, d.latitude) + ", " + y(d.longitude, d.latitude)  + ")"; })
+          .attr("transform", 
+            function(d) { return "translate(" + x(d.longitude, d.latitude) + ", " + y(d.longitude, d.latitude)  + ")"; })
           .text(function(d) { return capitaliseFirstLetter(d.name); });
 
     });  
