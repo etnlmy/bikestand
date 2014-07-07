@@ -1,5 +1,7 @@
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyB5ZH2RfQ6XFLFPiJVRPOz1hXUNFLpPXJU" %>
 <div class="container <%= controller_name %> <%= action_name %>" >
+  <%= content_tag :div, class: "contract", data: {contract: @contract} do %>
+  <% end %>
   <h2> <%= @contract.name.humanize %> </h2>
   <div class="row">
     <div class="col-lg-8">
