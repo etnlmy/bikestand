@@ -31,5 +31,13 @@ class Station < ActiveRecord::Base
   def fill_elevation_data
     update_attribute(:elevation, elevation_for(self.latitude, self.longitude))
   end
+
+  def last_record
+    records.last
+  end
+
+  def as_json(options)
+    super(methods: [:last_record])
+  end
     
 end
