@@ -1,8 +1,10 @@
-<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyB5ZH2RfQ6XFLFPiJVRPOz1hXUNFLpPXJU" %>
+<%= javascript_include_tag  "https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js" %>
+<%= stylesheet_link_tag "https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css" %>
+
 <div class="container <%= controller_name %> <%= action_name %>" >
   <%= content_tag :div, class: "contract", data: {contract: @contract} do %>
   <% end %>
-  <h2> <%= @contract.name.humanize %> </h2>
+  <h2> <%= @contract.name.humanize %> (<%=  @contract.commercial_name %>)</h2>
   <div class="row">
     <div class="col-lg-8">
       <div class="panel panel-default">
@@ -12,9 +14,9 @@
     <div class="col-lg-4">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">About this city</h3>
+          <h3 class="panel-title">Some facts about '<%=  @contract.commercial_name %>' </h3>
         </div>
-        <div class="panel-body">content</div>
+        <div class="panel-body" id="contract-info"></div>
       </div>
     </div>
   </div> 
