@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Station do
 
-  let(:contract) {FactoryGirl.create(:contract)}
+  let(:contract) { FactoryGirl.create(:contract) }
   before { @station = FactoryGirl.build(:station, contract: contract)}
     
   subject { @station }
@@ -15,6 +15,7 @@ describe Station do
   it { should respond_to(:banking) }
   it { should respond_to(:bonus) }
   it { should respond_to(:elevation) }
+  it { should respond_to(:last_record) }
   its(:contract) { should == contract }
   
   it { should be_valid }
@@ -114,6 +115,17 @@ describe Station do
         record.available_bikes.should == data["available_bikes"]
         record.last_update.should == Time.at(1403551306000/1000)
       end
+
+      it "should have its last_record attribute updated" do
+        @station.last_record.should_not be_nil
+        last_record = @station.last_record
+        last_record[:status].should == data["status"]
+        last_record[:bike_stands].should == data["bike_stands"]
+        last_record[:available_bike_stands].should == data["available_bike_stands"]
+        last_record[:available_bikes].should == data["available_bikes"]
+        last_record[:last_update].should == Time.at(1403551306000/1000)
+      end
+
     end
     
   end
