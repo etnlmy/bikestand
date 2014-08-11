@@ -18,23 +18,36 @@ var contractMap = (function () {
       return "#ffffff";
     }
     if (ocupancyRate < 0.3) {
-      return "#ca0020";
+      return "#404040";
     }
     if (ocupancyRate >= 0.3 && ocupancyRate <= 0.7) {
       return "#1a9641";
     }
-    return "#404040";
+    return "#ca0020";
   }
 
   function markerForStation(station) {
     var position = L.latLng(station.latitude, station.longitude),
-      record = station.last_record;
+      record = station.last_record,
+      color,
+      popup,
+      popupContent;
+
     if (!record) { throw "No record found for this station"; }
 
-    var color = ocupancyRateColorScale(
-        record.available_bike_stands / record.bike_stands,
-        record.status
-      );
+    color = ocupancyRateColorScale(
+      record.available_bike_stands / record.bike_stands,
+      record.status
+    );
+    var format = d3.time.format("%x at %X");
+    popupContent = "<p>" + station.name + "</p>" +
+                   "<p>" + record.available_bikes + " bikes available</p>" +
+                   "<p>" + record.available_bike_stands + " slots available</p>" +
+                   "<p> updated on " + format(new Date(record.last_update)) + "</p>";
+
+    popup = L.popup()
+        .setLatLng(position)
+        .setContent(popupContent);
 
     return L.circleMarker(
       position,
@@ -43,7 +56,9 @@ var contractMap = (function () {
         color: color,
         fillOpacity: 0.6
       }
-    );
+    ).on('mouseover', function () {
+      popup.openOn(map);
+    });
   }
 
   var displayMap = function (s, d) {
